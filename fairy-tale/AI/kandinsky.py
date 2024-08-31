@@ -2,6 +2,8 @@ import json
 import time
 import base64
 import requests
+import shortuuid
+from gigach2 import shorttext
 
 
 class Text2ImageAPI:
@@ -48,16 +50,36 @@ class Text2ImageAPI:
             time.sleep(delay)
 
 
-if __name__ == '__main__':
+
+# if __name__ == '__main__':
+def getImage(text:str):
+    """Преобразует текст в картинку
+
+    Args:
+        text (str): промт для ИИ
+
+    Returns:
+        str: возвращает название под которым лежит картинка в папке с форматом изображения
+    """
     api = Text2ImageAPI('https://api-key.fusionbrain.ai/', '97BD02561D23C243889DB0957238BA3F', '9D80C757F9DFA8DF4511A0490CC8A21C')
     model_id = api.get_model()
-    uuid = api.generate("Sun in sky", model_id)
+
+    text = shorttext(text)
+
+    uuid = api.generate(text, model_id)
     images = api.check_generation(uuid)
     
     image_base64 = images[0] # Вставьте вашу строку base64 сюда
     # Декодируем строку base64 в бинарные данные
     image_data = base64.b64decode(image_base64)
     # Открываем файл для записи бинарных данных изображения
-    with open("image.jpg", "wb") as file:
+    namefile = shortuuid.uuid()
+    with open(f"./fairy-tale/AI/images/{namefile}.jpg", "wb") as file:
         file.write(image_data)
+
+    re_text = namefile + '.jpg'
+    return re_text
+
+# [1] Жили-были в старинном лесу три веселых зайца: Барабас, Хвостик и Шустрый. Они были неразлучными друзьями и всегда веселились вместе. Однажды, прогуливаясь по лесу, они услышали странный звук. Откуда-то из-за кустов доносилось хриплое храпение. Они подошли поближе и увидели спящего волка.Какое действие хочешь предпринять?
+getImage(input())
     

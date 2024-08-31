@@ -31,9 +31,9 @@ messages = [
 # Выжимка на английском
 # Он не воспринимает слова
 # Он не заканчивает сказку
-while(True):
-    user_input = input("User: ")
+
+def giveanswer(user_input):
     messages.append(HumanMessage(content=user_input))
     res = chat.invoke(messages)
     messages.append(res)
-    print("Bot: ", res.content)
+    return res.content
