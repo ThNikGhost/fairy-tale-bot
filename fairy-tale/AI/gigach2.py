@@ -7,7 +7,7 @@ chat = GigaChat(credentials="OTg5ZWE3MzMtN2IyNS00ZGYyLWI3OTEtZWE4ZjQ0M2E2MzZmOjF
 
 messages = [
     SystemMessage(
-        content="""Мне нужно, чтобы ты максимально кратко и сохраняя смысл перефразировал текст. В ответе не более 15 слов."""
+        content="""Напиши как бы выглядела иллюстрация к этому тексту, кратко. не более 20 слов."""
     )
 ]
 # Начало перед историей нету

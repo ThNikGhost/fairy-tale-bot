@@ -66,7 +66,7 @@ def getImage(text:str):
 
     text = shorttext(text)
 
-    uuid = api.generate(text, model_id)
+    uuid = api.generate(text + ", в абстрактном стиле", model_id)
     images = api.check_generation(uuid)
     
     image_base64 = images[0] # Вставьте вашу строку base64 сюда
