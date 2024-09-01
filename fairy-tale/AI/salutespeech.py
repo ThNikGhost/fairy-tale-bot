@@ -34,7 +34,7 @@ def get_token(auth_token, scope='SALUTE_SPEECH_PERS'):
     try:
         # Делаем POST запрос с отключенной SSL верификацией
         # (можно скачать сертификаты Минцифры, тогда отключать проверку не надо)
-        response = requests.post(url, headers=headers, data=payload)
+        response = requests.post(url, headers=headers, data=payload, verify=False)
         return response
     except requests.RequestException as e:
         print(f"Ошибка: {str(e)}")
@@ -65,7 +65,10 @@ def synthesize_speech(text, token=salute_token, format='wav16', voice='Tur_24000
 
     if response.status_code == 200:
         # Сохранение синтезированного аудио в файл
-        namefile = shortuuid.uuid()
-        with open('./fairy-tale/AI/images/{namefile}.wav', 'wb') as f:
+        namefile = shortuuid.uuid() + '.wav'
+        with open(f'./fairy-tale/AI/voices/{namefile}', 'wb') as f:
             f.write(response.content)
-        print("Аудио успешно синтезировано и сохранено как 'output.wav'")
+    re_text = namefile
+    return re_text
+
+# print(synthesize_speech('Зайчик зайчик зайчик'))
