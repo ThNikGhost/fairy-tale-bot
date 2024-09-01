@@ -14,7 +14,7 @@ previous_user_request = None
 
 
 def send_media(message, image_name, voice_file, text):
-    bot.send_photo(message.chat.id, open(f"./fairy-tale/AI/photo/{image_name}", 'rb'))
+    bot.send_photo(message.chat.id, open(f"./fairy-tale/AI/images/{image_name}", 'rb'))
     bot.send_audio(message.chat.id, open(f"./fairy-tale/AI/voices/{voice_file}", 'rb'))
     bot.send_message(message.chat.id, text)
 
@@ -23,7 +23,7 @@ def start(message):
     bot.send_message(message.chat.id, '''Привет! 👋
 Я — бот, который сгенерирует сказку по твоим предпочтениям. 
 Чтобы начать создание сказки, напиши о чем хочешь, чтобы она была:''')
-    bot.send_photo(message.chat.id, open('start.jpg', 'rb'))
+    bot.send_photo(message.chat.id, open('fairy-tale/start.jpg', 'rb'))
 
 
 @bot.message_handler(content_types=['text'])
@@ -206,7 +206,7 @@ def handle_text(message):
     
     image_name = getImage(res.content)
     
-    bot.send_photo(message.chat.id, open(f"./fairy-tale/AI/photo/{image_name}", 'rb'))
+    bot.send_photo(message.chat.id, open(f"./fairy-tale/AI/images/{image_name}", 'rb'))
     
     # Synthesize speech and send audio message
     speech_text = res.content

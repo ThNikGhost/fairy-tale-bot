@@ -3,7 +3,7 @@ import time
 import base64
 import requests
 import shortuuid
-from gigach2 import shorttext
+from AI.gigach2 import shorttext
 
 
 class Text2ImageAPI:
