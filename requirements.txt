@@ -1,1 +1,2 @@
-gigachain-community
+gigachain-community==0.2.12 
+telebot==0.0.5
